@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1749297987995,
+    "nama": "Arya update",
+    "umur": 22,
+    "gender": "Male",
+    "email": "arya@example.com",
+    "no_telepon": "08123456789",
+    "password": "$2b$10$/LtgEEpWVaa7ofj1lasNyOjuC9g13pwoYh28GnQUcp45bLhZzpcsq"
+  },
+  {
+    "id": 1771261351400,
+    "nama": "wawa",
+    "umur": "23",
+    "gender": "male",
+    "email": "wawa@gmail.com",
+    "no_telepon": "0899999912",
+    "password": "$2b$10$p/OBrdw9JDVudRAtpg2LLusn1kiKWeV5sO7dgTDUFaHuVcKjM1UG6"
+  },
+  {
+    "id": 1774251340095,
+    "nama": "New Test User",
+    "umur": 30,
+    "gender": "Female",
+    "email": "newtest@example.com",
+    "no_telepon": "0811111111",
+    "password": "$2b$10$Ol5Hhb0oBbwjrEQzxrvCKO9w9exsADUhs/4hAgPyhLZgqreFAis4S"
+  },
+  {
+    "id": 1772193219711,
+    "nama": "Test User",
+    "umur": 25,
+    "gender": "Male",
+    "email": "test@example.com",
+    "no_telepon": "081234567890",
+    "password": "$2b$10$j7kpofj5B1Gu99/9DkJm0eZRGB0TgWSsfODgoAmsLt1g/Q/6XOfVa"
+  },
+  {
+    "id": 1772193486759,
+    "nama": "Updated Name",
+    "umur": 31,
+    "gender": "Female",
+    "email": "user1772193486698@test.com",
+    "no_telepon": "08987654321",
+    "password": "$2b$10$5RnLnj02vhRM0pPsev6Ew.O.IMdPORo.ov3CXvS9Op6nQOfaKl7Me"
+  },
+  {
+    "id": 1772194096495,
+    "nama": "JWT_Test_1772194094033",
+    "umur": 28,
+    "gender": "Female",
+    "email": "jwttest1772194094033@test.com",
+    "no_telepon": "08999999999",
+    "password": "$2b$10$I9kwWd726hJqu3l.2su4wO/0930sZVthavR1VIIShhL8tUbl60ura"
+  },
+  {
+    "id": 1772194447471,
+    "nama": "JWT_Test_1772194447096",
+    "umur": 28,
+    "gender": "Female",
+    "email": "jwttest1772194447096@test.com",
+    "no_telepon": "08999999999",
+    "password": "$2b$10$uYKW6yiijXnAW8DMIhFmC.eGyF9tPjdrUhYXyCRqkNvxyKaozDZoS"
+  },
+  {
+    "id": 1772196427283,
+    "nama": "JWT_Test_1772196425916",
+    "umur": 28,
+    "gender": "Female",
+    "email": "jwttest1772196425916@test.com",
+    "no_telepon": "08999999999",
+    "password": "$2b$10$TVGvci2MdWrnFpkK1cQ.9eTlb/ggHCrld1DgW34SouaHR/1rLlT1i"
+  },
+  {
+    "id": 1772197396752,
+    "nama": "JWT_Test_1772197395194",
+    "umur": 28,
+    "gender": "Female",
+    "email": "jwttest1772197395194@test.com",
+    "no_telepon": "08999999999",
+    "password": "$2b$10$JJeAIE0i4hBnRQySsJf4dexGdX0e7HOISJPoSGDyBwZE0kiOw3X3u"
+  },
+  {
+    "id": 1772200212283,
+    "nama": "JWT_Test_1772200209334",
+    "umur": 28,
+    "gender": "Female",
+    "email": "jwttest1772200209334@test.com",
+    "no_telepon": "08999999999",
+    "password": "$2b$10$M1541FHRceb7flovXmJ5Sub.R8/JNXfvwh4qNGo/onETpDPkfb.6m"
+  },
+  {
+    "id": 1772200476445,
+    "nama": "JWT_Test_1772200476042",
+    "umur": 28,
+    "gender": "Female",
+    "email": "jwttest1772200476042@test.com",
+    "no_telepon": "08999999999",
+    "password": "$2b$10$2ERHSkFii6amh75oFTx7o.kN84iVPkKAUw1qn6E0FUnI5c44aTNBW"
+  },
+  {
+    "id": 1772200489248,
+    "nama": "Updated Name",
+    "umur": 31,
+    "gender": "Female",
+    "email": "user1772200488977@test.com",
+    "no_telepon": "08987654321",
+    "password": "$2b$10$nS7aZlIcj.m44xXqdoFK..2trjLwX09OmAgztl9s7IK0wd5rVsY6S"
+  }
+]

@@ -1,0 +1,31 @@
+[
+  {
+    "id": 123456789,
+    "gender": "male",
+    "age": 30,
+    "bmi": 22.5,
+    "hba1c": 5.6,
+    "glucoseLevel": 110,
+    "smokingHistory": "no",
+    "prediction": "Normal"
+  },
+  {
+    "id": 1772193219806,
+    "user_id": 1,
+    "hasil": true,
+    "tanggal": "2026-02-27T11:53:39.796Z"
+  },
+  {
+    "id": 1772193487045,
+    "user_id": 1,
+    "nilai": {
+      "age": 35,
+      "bmi": 28.5,
+      "blood_glucose_level": 145,
+      "HbA1c_level": 7.2
+    },
+    "hasil": false,
+    "probabilitas": "61.79",
+    "tanggal": "2026-02-27T11:58:07.039Z"
+  }
+]
