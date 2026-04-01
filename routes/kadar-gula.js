@@ -4,9 +4,22 @@ const path = require('path');
 const router = express.Router();
 const filePath = path.join(__dirname, '../data/kadar-gula.json');
 
-// Ambil semua data kadar gula
+// Ambil semua data kadar gula (optional per-user)
 router.get('/', (req, res) => {
-  const data = JSON.parse(fs.readFileSync(filePath));
+  let data = JSON.parse(fs.readFileSync(filePath));
+  const userId = req.query.user_id;
+
+  if (userId) {
+    data = data.filter(k => String(k.user_id) === String(userId));
+  }
+
+  // Urutkan dari terbaru ke terlama berdasarkan waktu, fallback id
+  data.sort((a, b) => {
+    const aTime = a.waktu ? new Date(a.waktu).getTime() : a.id;
+    const bTime = b.waktu ? new Date(b.waktu).getTime() : b.id;
+    return bTime - aTime;
+  });
+
   res.json(data);
 });
 
