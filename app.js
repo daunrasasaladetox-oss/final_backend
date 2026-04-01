@@ -40,9 +40,11 @@ const kadarGulaRoutes = require('./routes/kadar-gula');
 app.use('/users', userRoutes);  // /users/login, POST /users (register)
 
 // Protected routes (membutuhkan JWT token)
-app.use('/obat', verifyToken, obatRoutes);
-app.use('/prediksi', verifyToken, prediksiRoutes);
-app.use('/kadar-gula', verifyToken, kadarGulaRoutes);
+// Di mode development skripsi, nonaktifkan JWT sementara untuk menghindari batas Railway
+// Catatan: ini hanya untuk pengembangan dan tidak aman untuk produksi.
+app.use('/obat', obatRoutes);
+app.use('/prediksi', prediksiRoutes);
+app.use('/kadar-gula', kadarGulaRoutes);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -51,8 +53,8 @@ app.get('/', (req, res) => {
   res.send('RESTful API is running! Version 2.0 with JWT Authentication');
 });
 
-// Prediksi endpoint rule-based sesuai skripsi
-app.post('/predict', verifyToken, (req, res) => {
+// Prediksi endpoint rule-based sesuai skripsi (tanpa authentication sekarang)
+app.post('/predict', (req, res) => {
   try {
     console.log('📊 Data dari frontend (predict):', req.body);
 
