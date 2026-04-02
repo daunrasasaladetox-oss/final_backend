@@ -4,62 +4,51 @@ const path = require('path');
 const router = express.Router();
 const filePath = path.join(__dirname, '../data/prediksi.json');
 
-function prediksiDiabetes(gula) {
-  if (gula < 100) {
-    return { status: 'Normal', risiko: 'Rendah' };
-  } else if (gula >= 100 && gula <= 125) {
-    return { status: 'Prediabetes', risiko: 'Sedang' };
-  } else {
-    return { status: 'Diabetes', risiko: 'Tinggi' };
-  }
+function formatPrediksiItem(item) {
+  return {
+    gender: item.gender ?? item.nilai?.gender ?? item.input?.gender ?? '',
+    age: Number(item.age ?? item.nilai?.age ?? item.input?.age ?? 0),
+    bmi: Number(item.bmi ?? item.nilai?.bmi ?? item.input?.bmi ?? 0),
+    HbA1c_level: Number(item.HbA1c_level ?? item.hba1c ?? item.nilai?.HbA1c_level ?? item.input?.HbA1c_level ?? 0),
+    blood_glucose_level: Number(item.blood_glucose_level ?? item.glucoseLevel ?? item.nilai?.blood_glucose_level ?? item.input?.blood_glucose_level ?? 0),
+    smoking_history: item.smoking_history ?? item.smokingHistory ?? item.nilai?.smoking_history ?? item.input?.smoking_history ?? '',
+    prediction: item.prediction ?? item.hasil ?? ''
+  };
 }
 
-function buatCatatanUsia(usia, gula) {
-  if (!Number.isFinite(usia)) return null;
-  if (usia >= 18 && usia <= 40 && gula >= 126) {
-    return 'Perlu perhatian khusus (usia produktif berisiko tinggi)';
-  }
-  return null;
-}
-
-// Ambil semua data prediksi
+// Ambil semua data prediksi (optional per-user)
 router.get('/', (req, res) => {
   if (!fs.existsSync(filePath)) fs.writeFileSync(filePath, '[]');
-  const data = JSON.parse(fs.readFileSync(filePath));
-  res.json(data);
-});
+  let data = JSON.parse(fs.readFileSync(filePath));
 
-// Tambah data prediksi dan hitung prediksi rule-based
-router.post('/', (req, res) => {
-  const rawGula = req.body.kadar_gula ?? req.body.gula ?? req.body.blood_glucose_level ?? req.body.glucose_level;
-  const rawUsia = req.body.usia ?? req.body.age;
-
-  const gula = Number(rawGula);
-  const usia = rawUsia !== undefined ? Number(rawUsia) : NaN;
-
-  if (!Number.isFinite(gula) || gula <= 0) {
-    return res.status(400).json({
-      error: 'Kadar gula harus diisi dan bernilai positif.'
-    });
+  const userId = req.query.user_id;
+  if (userId) {
+    data = data.filter(p => String(p.user_id) === String(userId));
   }
 
-  const hasil = prediksiDiabetes(gula);
-  const catatan = buatCatatanUsia(usia, gula);
+  data.sort((a,b) => new Date(b.tanggal || b.createdAt || 0) - new Date(a.tanggal || a.createdAt || 0));
+  res.json(data.map(formatPrediksiItem));
+});
 
+// Tambah data prediksi
+router.post('/', (req, res) => {
   if (!fs.existsSync(filePath)) fs.writeFileSync(filePath, '[]');
   const data = JSON.parse(fs.readFileSync(filePath));
-  const newPrediksi = {
+
+  const payload = {
     id: Date.now(),
-    input: { ...req.body, kadar_gula: gula, usia: Number.isFinite(usia) ? usia : null },
-    hasil: hasil.status,
-    risiko: hasil.risiko,
-    catatan,
-    createdAt: new Date().toISOString()
+    gender: req.body.gender ?? req.body.nilai?.gender ?? '',
+    age: Number(req.body.age ?? req.body.nilai?.age ?? 0),
+    bmi: Number(req.body.bmi ?? req.body.nilai?.bmi ?? 0),
+    HbA1c_level: Number(req.body.HbA1c_level ?? req.body.hba1c ?? req.body.nilai?.HbA1c_level ?? 0),
+    blood_glucose_level: Number(req.body.blood_glucose_level ?? req.body.glucoseLevel ?? req.body.nilai?.blood_glucose_level ?? 0),
+    smoking_history: req.body.smoking_history ?? req.body.smokingHistory ?? req.body.nilai?.smoking_history ?? '',
+    prediction: req.body.prediction ?? req.body.hasil ?? ''
   };
 
-  data.push(newPrediksi);
+  data.push(payload);
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
-  res.status(201).json(newPrediksi);
+  res.status(201).json(formatPrediksiItem(payload));
 });
 
 module.exports = router;

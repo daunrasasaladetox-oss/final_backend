@@ -100,14 +100,6 @@ router.post('/login', async (req, res) => {
     const user = data.find(u => u.email === email);
     
     if (!user) {
-      // Fallback development account (jika user belum terdaftar di deployment)
-      if (email === 'arya@example.com' && password === 'secret123') {
-        // ambil user pertama sebagai representasi login valid
-        user = data[0];
-      }
-    }
-
-    if (!user) {
       return res.status(401).json({ message: 'Email atau password salah' });
     }
 

@@ -35,6 +35,7 @@ const userRoutes = require('./routes/users');
 const obatRoutes = require('./routes/obat');
 const prediksiRoutes = require('./routes/prediksi');
 const kadarGulaRoutes = require('./routes/kadar-gula');
+const remindersRoutes = require('./routes/reminders');
 
 // Public routes (tidak perlu authentication)
 app.use('/users', userRoutes);  // /users/login, POST /users (register)
@@ -45,6 +46,7 @@ app.use('/users', userRoutes);  // /users/login, POST /users (register)
 app.use('/obat', obatRoutes);
 app.use('/prediksi', prediksiRoutes);
 app.use('/kadar-gula', kadarGulaRoutes);
+app.use('/reminders', remindersRoutes);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
